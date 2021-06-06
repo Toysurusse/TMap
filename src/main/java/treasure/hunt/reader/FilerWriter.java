@@ -31,7 +31,7 @@ public class FilerWriter {
     private static final Logger LOGGER = LoggerFactory.getLogger(FilerWriter.class);
 
     @Value("${env.config.path.export}")
-    private static String outputPath;
+    private String outputPath;
 
     @Autowired
     ConfigurationMap configurationMap;

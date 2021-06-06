@@ -2,14 +2,22 @@
 
 ## La carte au trésors (étapes du programme)
 #Lire le fichier d’entrée
+
 Le programme doit être capable de lire le fichier d’entrée de l’exercice.
+
 Note : une ligne débutant par un ‘#’ est un commentaire et doit être ignorée.
 Exemple :
+
 C - 3 - 4
+
 M - 1 - 0
+
 M - 2 - 1
+
 T - 0 - 3 - 2
+
 T - 1 - 3 - 3
+
 A - Lara - 1 - 1 - S - AADADAGGA
 Que l’on peut représenter sous la forme suivante :
 . M .

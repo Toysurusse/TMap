@@ -86,7 +86,7 @@ public class MoveAdventurer {
      * @param orientation  orientation of adventurer
      */
     private static void getTreasureAndMove(MapTreasure mapTreasure, Adventurer adventurer, Position nextPosition, Treasure treasure, Orientation orientation) {
-        if (isOtherPosition(adventurer, nextPosition)) mapTreasure.handleTreasure(treasure, adventurer, nextPosition);
+        if (isOtherPosition(adventurer, nextPosition)) mapTreasure.handleTreasure(treasure, adventurer);
         move(mapTreasure, adventurer, nextPosition, orientation);
     }
 

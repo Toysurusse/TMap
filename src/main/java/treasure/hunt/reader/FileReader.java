@@ -29,7 +29,7 @@ public class FileReader {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FileReader.class);
 
-    @Value("classpath:data/inputFile.txt")
+    @Value("${env.config.path}")
     Resource resourceFile;
 
     @Autowired
@@ -45,7 +45,7 @@ public class FileReader {
         try {
             File file = resourceFile.getFile();
             Scanner myReader = new Scanner(file);
-            StringBuilder fileInfo = new StringBuilder("<table>\n");
+            StringBuilder fileInfo = new StringBuilder("");
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 fileInfo.append(data + "\n");

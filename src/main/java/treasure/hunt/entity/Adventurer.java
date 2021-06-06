@@ -105,12 +105,4 @@ public class Adventurer extends MapItem{
         if(this.moves.size()>0)this.moves.remove(0);
     }
 
-    public int getTreasure() {
-        return treasure;
-    }
-
-    public void setTreasure(int treasure) {
-        this.treasure = treasure;
-    }
-
 }

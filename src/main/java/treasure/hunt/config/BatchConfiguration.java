@@ -40,29 +40,4 @@ public class BatchConfiguration {
     @Autowired
     public StepBuilderFactory stepBuilderFactory;
 
-    @Autowired
-    public FileReader fileReader;
-
-    @Autowired
-    public FilerWriter filerWriter;
-
-    @Autowired
-    public ConfigurationMap configurationMap;
-
-    @Autowired
-    public MoveOrchestor moveOrchestor;
-
-    @Value("classpath:data/inputFile.txt")
-    Resource resourceFile;
-
-    /**
-     * read the file, move adventurers and then save file in the resources/result folder
-     */
-    @Bean
-    public void reader() {
-        this.fileReader.readFile();
-        LOGGER.info(configurationMap.getMapTreasure().toString());
-        this.moveOrchestor.moveAdneturers();
-        this.filerWriter.writeFile();
-    }
 }

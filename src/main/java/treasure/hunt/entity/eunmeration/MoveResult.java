@@ -1,6 +1,8 @@
 package treasure.hunt.entity.eunmeration;
 
 
+import treasure.hunt.Exception.BusinessException;
+
 /**
  * Enum of moveResult
  *
@@ -57,6 +59,6 @@ public enum MoveResult {
                 return e;
             }
         }
-        return null;
+        throw new BusinessException("There is no MoveResult from your input");
     }
 }

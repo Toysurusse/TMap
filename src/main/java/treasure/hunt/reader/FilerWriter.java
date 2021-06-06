@@ -3,6 +3,8 @@ package treasure.hunt.reader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import treasure.hunt.config.ConfigurationMap;
 
@@ -28,6 +30,9 @@ public class FilerWriter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FilerWriter.class);
 
+    @Value("${env.config.path.export}")
+    private static String outputPath;
+
     @Autowired
     ConfigurationMap configurationMap;
 
@@ -35,9 +40,8 @@ public class FilerWriter {
      * write the file in the output file after moving all adventurers
      */
     public void writeFile(){
-        LOGGER.info(configurationMap.getMapTreasure().toFileString().toString());
         try {
-            Files.write(Paths.get("src/main/resources/result/Output"+
+            Files.write(Paths.get(outputPath+
                             LocalDateTime.now().format(DateTimeFormatter.ofPattern("-dd-MM-yyyy-"))+".txt"),
                             configurationMap.getMapTreasure().toFileString(),
                             StandardCharsets.UTF_8);

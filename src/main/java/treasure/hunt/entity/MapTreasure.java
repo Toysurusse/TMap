@@ -20,12 +20,12 @@ public class MapTreasure {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BatchConfiguration.class);
 
-    private int heigth;
-    private int width;
-    private LinkedList<Adventurer> adventurers;
-    private ArrayList<Mountain> mountains;
-    private ArrayList<Treasure> treasures;
-    private ArrayList<Treasure> storedTreasures = new ArrayList();
+    private static int heigth;
+    private static int width;
+    private static LinkedList<Adventurer> adventurers;
+    private static ArrayList<Mountain> mountains;
+    private static ArrayList<Treasure> treasures;
+    private static ArrayList<Treasure> storedTreasures = new ArrayList();
     private MapItem[][] mapItems;
 
     public MapTreasure(int width, int heigth, LinkedList<Adventurer> adventurers, ArrayList<Mountain> mountains, ArrayList<Treasure> treasures) {
@@ -76,7 +76,7 @@ public class MapTreasure {
      */
     public ArrayList<String> toFileString() {
         ArrayList<String> map = new ArrayList<>();
-        map.add("C - "+this.width+" - "+this.heigth);
+        map.add("C - "+ width+" - "+this.heigth);
         mountains.forEach(mountain-> map.add(mountain.fileFormatToString()));
         treasures.forEach(treasure-> map.add(treasure.fileFormatToString()));
         adventurers.forEach(adventurer-> map.add(adventurer.fileFormatToString()));
@@ -197,10 +197,6 @@ public class MapTreasure {
 
     public int getWidth() {
         return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
     }
 
     public LinkedList<Adventurer> getAdventurers() {

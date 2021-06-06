@@ -20,12 +20,12 @@ public class Adventurer extends MapItem{
     private static final Logger LOGGER = LoggerFactory.getLogger(MoveAdventurer.class);
 
     private int treasure;
-    private final String nameAdventurer;
+    private String nameAdventurer;
     private Orientation orientation;
     private List<Direction> moves;
 
     public Adventurer(String nameAdventurer, Position position, Orientation orientation, List<Direction> moves) {
-        super(position, " A ");
+        super(position, "A ");
         this.nameAdventurer = nameAdventurer;
         this.orientation = orientation;
         this.moves = moves;
@@ -41,6 +41,16 @@ public class Adventurer extends MapItem{
                 ", moves=" + moves +
                 ", treasure=" + treasure +
                 '}';
+    }
+
+    @Override
+    public String getName(){
+        return super.getName() + "("+ getNameAdventurer() + ")";
+    }
+
+    @Override
+    public String fileFormatToString(){
+        return this.name + "- " + this.nameAdventurer + "- " + position.getPositionX() + " - "+position.getPositionY() + " - " + this.orientation + " - " + this.treasure;
     }
 
     public String getNameAdventurer() {
@@ -85,6 +95,10 @@ public class Adventurer extends MapItem{
     }
 
     public void addOneTreasure() {
-        this.treasure += treasure;
+        this.treasure++;
+    }
+
+    public int namelength() {
+        return nameAdventurer.length()+4;
     }
 }

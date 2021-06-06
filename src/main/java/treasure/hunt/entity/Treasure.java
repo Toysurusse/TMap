@@ -7,7 +7,7 @@ public class Treasure extends MapItem{
     private int number;
 
     public Treasure(Position position, int number) {
-        super(position, " T");
+        super(position, "T");
         this.number = number;
     }
 
@@ -21,7 +21,12 @@ public class Treasure extends MapItem{
 
     @Override
     public String getName() {
-        return super.getName() + this.number;
+        return super.getName() +"(" + this.number +")";
+    }
+
+    @Override
+    public String fileFormatToString(){
+        return this.name + " - " + position.getPositionX() + " - "+position.getPositionY() + " - " + this.number;
     }
 
     public int getNumber() {

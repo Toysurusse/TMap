@@ -1,8 +1,8 @@
 package treasure.hunt.entity;
 
 public abstract class MapItem {
-    private Position position;
-    private String name;
+    protected Position position;
+    protected String name;
 
     public MapItem(Position position, String name) {
         this.position = position;
@@ -27,5 +27,9 @@ public abstract class MapItem {
 
     public String getName() {
         return name;
+    }
+
+    public String fileFormatToString(){
+        return this.name + "- " + position.getPositionX() + " - "+position.getPositionY();
     }
 }

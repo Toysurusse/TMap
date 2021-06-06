@@ -21,7 +21,7 @@ public enum MapItems {
 
     public static MapItems valueOfLabel(String label) {
         for (MapItems e : values()) {
-            if (label != null && e.label.equals(label.substring(1,2))) {
+            if (label != null && e.label.equals(label.substring(0,1))) {
                 return e;
             }
         }

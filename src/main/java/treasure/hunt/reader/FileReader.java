@@ -25,7 +25,7 @@ public class FileReader {
     Resource resourceFile;
 
     @Autowired
-    InitMap parseData;
+    InitMap initMap;
 
     @Autowired
     ConfigurationMap configurationMap;
@@ -38,15 +38,14 @@ public class FileReader {
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 fileInfo.append(data + "\n");
-                LOGGER.info(data);
             }
             myReader.close();
-            configurationMap.setMapTreasure(parseData.getItemFromLines(fileInfo.toString()));
+            configurationMap.setMapTreasure(initMap.getItemFromLines(fileInfo.toString()));
         } catch (FileNotFoundException e) {
-            System.out.println("File Not found.");
+            LOGGER.error("File Not found.");
             e.printStackTrace();
         } catch (IOException e) {
-            System.out.println("An error has occured.");
+            LOGGER.error("An error has occured.");
             e.printStackTrace();
         }
     }

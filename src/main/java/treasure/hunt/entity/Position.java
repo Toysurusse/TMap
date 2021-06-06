@@ -10,7 +10,7 @@ public class Position {
         this.positionY = positionY;
     }
 
-    public Position(String positionX, String positionY) {
+    public Position(String positionY, String positionX) {
         this.positionX = Integer.valueOf(positionX) ;
         this.positionY = Integer.valueOf(positionY);
     }

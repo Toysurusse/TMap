@@ -14,6 +14,7 @@ import org.springframework.core.io.Resource;
 import treasure.hunt.business.move.MoveAdventurer;
 import treasure.hunt.business.move.MoveOrchestor;
 import treasure.hunt.reader.FileReader;
+import treasure.hunt.reader.FilerWriter;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -36,6 +37,9 @@ public class BatchConfiguration {
     public FileReader fileReader;
 
     @Autowired
+    public FilerWriter filerWriter;
+
+    @Autowired
     public ConfigurationMap configurationMap;
 
     @Autowired
@@ -49,6 +53,7 @@ public class BatchConfiguration {
         this.fileReader.readFile();
         LOGGER.info(configurationMap.getMapTreasure().toString());
         this.moveOrchestor.moveAdneturers();
+        this.filerWriter.writeFile();
     }
 
     @Bean

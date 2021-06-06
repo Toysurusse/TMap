@@ -30,6 +30,5 @@ public class MoveOrchestor {
             });
             LOGGER.info(configurationMap.getMapTreasure().toString());
         }
-        LOGGER.info("All advendurers have done their moves");
     }
 }

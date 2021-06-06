@@ -15,9 +15,9 @@ public class MapTreasure {
 
     private int heigth;
     private int width;
-    private LinkedList<Adventurer> adventurers  = new LinkedList();
-    private ArrayList<Mountain> mountains  = new ArrayList();
-    private ArrayList<Treasure> treasures  = new ArrayList();
+    private LinkedList<Adventurer> adventurers = new LinkedList();
+    private ArrayList<Mountain> mountains = new ArrayList();
+    private ArrayList<Treasure> treasures = new ArrayList();
     private ArrayList<Treasure> storedTreasures = new ArrayList();
     private MapItem[][] mapItems;
 
@@ -30,7 +30,7 @@ public class MapTreasure {
         this.mapItems = new MapItem[width][heigth];
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < heigth; j++) {
-                mapItems[i][j] = new Plain(new Position(i,j));
+                mapItems[i][j] = new Plain(new Position(i, j));
             }
         }
         adventurers.forEach(adventurer -> mapItems[adventurer.getPosition().getPositionX()][adventurer.getPosition().getPositionY()] = adventurer);
@@ -48,20 +48,8 @@ public class MapTreasure {
         this.width = Integer.valueOf(width);
     }
 
-    /**
-     * Create a string view of the map
-     *
-     * @return string of the map
-     */
     @Override
     public String toString() {
-        LOGGER.info("Map{" +
-                "heigth=" + heigth +
-                ", width=" + width +
-                ", adventurers=" + adventurers +
-                ", mountains=" + mountains +
-                ", treasures=" + treasures +
-                '}');
         StringBuilder map = new StringBuilder("Map{" +
                 "heigth=" + heigth +
                 ", width=" + width +
@@ -69,17 +57,36 @@ public class MapTreasure {
                 ", mountains=" + mountains +
                 ", treasures=" + treasures +
                 '}');
+        int charlength = adventurersMaxNameLength();
         for (int i = 0; i < width; i++) {
-            map.append("\n|");
+            map.append("\n");
             for (int j = 0; j < heigth; j++) {
                 MapItem value = mapItems[i][j];
-                if(value != null)map.append(value.getName()+"|");
+                if (value != null)
+                    map.append(value.getName() + goodLengthStringMap(charlength - value.getName().length()));
             }
         }
         return map.toString();
     }
 
-    public MapItem getItemFromMap(int x, int y){
+    public ArrayList<String> toFileString() {
+        ArrayList<String> map = new ArrayList<>();
+        map.add("C - "+this.width+" - "+this.heigth);
+        mountains.forEach(mountain-> map.add(mountain.fileFormatToString()));
+        treasures.forEach(treasure-> map.add(treasure.fileFormatToString()));
+        adventurers.forEach(adventurer-> map.add(adventurer.fileFormatToString()));
+        return map;
+    }
+
+    private String goodLengthStringMap(int length) {
+        String str = "";
+        for (int i = 0; i <= length; i++) {
+            str = str + " ";
+        }
+        return str;
+    }
+
+    public MapItem getItemFromMap(int x, int y) {
         return mapItems[x][y];
     }
 
@@ -131,13 +138,14 @@ public class MapTreasure {
         this.mapItems = mapItems;
     }
 
-    public boolean isAdventurersGetMoves(){
+    public boolean isAdventurersGetMoves() {
         return this.adventurers.stream().anyMatch(adventurer -> adventurer.isMoveLeft());
     }
 
     public void setNewPositionForAdventurer(Adventurer adventurer, Position newPositionForAdventurer, Orientation orientation) {
-        Position oldPosition = new Position (adventurer.getPosition().getPositionX(),adventurer.getPosition().getPositionY());
-        if(isOtherPosition(adventurer, newPositionForAdventurer))mapItems[oldPosition.getPositionX()][oldPosition.getPositionY()] = checkTreasureLeft(oldPosition);
+        Position oldPosition = new Position(adventurer.getPosition().getPositionX(), adventurer.getPosition().getPositionY());
+        if (isOtherPosition(adventurer, newPositionForAdventurer))
+            mapItems[oldPosition.getPositionX()][oldPosition.getPositionY()] = checkTreasureLeft(oldPosition);
         adventurer.setNewPosition(newPositionForAdventurer);
         adventurer.setOrientation(orientation);
         mapItems[newPositionForAdventurer.getPositionX()][newPositionForAdventurer.getPositionY()] = adventurer;
@@ -147,24 +155,33 @@ public class MapTreasure {
         treasure.removeOneTresure();
         adventurer.addOneTreasure();
         LOGGER.info(treasure.toString());
-        if(treasure.getNumber()>0){
+        if (treasure.getNumber() > 0) {
             this.storedTreasures.add(treasure);
         } else {
             this.treasures.remove(treasure);
         }
     }
+
     public MapItem checkTreasureLeft(Position position) {
         Optional<Treasure> treasure = this.storedTreasures.stream().filter(treasureStored -> treasureStored.getPosition().getPositionX() == position.getPositionX()
                 && treasureStored.getPosition().getPositionY() == position.getPositionY()).findFirst();
         if (treasure.isPresent()) {
             this.storedTreasures.remove(treasure.get());
             return treasure.get();
-        }
-        else return new Plain(new Position (position.getPositionX(), position.getPositionY()));
+        } else return new Plain(new Position(position.getPositionX(), position.getPositionY()));
     }
 
     private static boolean isOtherPosition(Adventurer adventurer, Position position) {
         return position.getPositionX() != adventurer.getPosition().getPositionX()
                 || position.getPositionY() != adventurer.getPosition().getPositionY();
+    }
+
+    private int adventurersMaxNameLength() {
+        int nameLength = 0;
+        for (int i = 0; i < this.adventurers.size(); i++) {
+            int length = this.adventurers.get(i).namelength();
+            if (length > nameLength) nameLength = length;
+        }
+        return nameLength;
     }
 }

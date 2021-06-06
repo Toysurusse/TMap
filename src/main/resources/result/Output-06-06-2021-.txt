@@ -1,0 +1,15 @@
+C - 12 - 9
+M - 1 - 2
+M - 4 - 5
+M - 4 - 2
+M - 1 - 5
+T - 4 - 3 - 2
+T - 3 - 4 - 2
+A - Lara- 0 - 0 - N - 2
+A - Batiste- 0 - 1 - E - 0
+A - James- 3 - 3 - N - 3
+A - Batiste- 3 - 4 - E - 0
+A - Jones- 3 - 0 - N - 2
+A - Batiste- 3 - 1 - E - 0
+A - Igor- 0 - 3 - N - 0
+A - Batiste- 0 - 4 - E - 0

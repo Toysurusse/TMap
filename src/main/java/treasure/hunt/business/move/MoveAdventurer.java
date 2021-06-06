@@ -19,8 +19,6 @@ public class MoveAdventurer {
         MoveResult moveResult = getMoveResult(adventurer.getMoves().get(0), adventurer.getOrientation());
         LOGGER.info(moveResult.orientationResult.label+ moveResult.direction.label+ moveResult.MOVEX+ moveResult.MOVEY);
         Position nextPosition = getNextPosition(adventurer.getPosition(), moveResult);
-        LOGGER.info(nextPosition.toString());
-        LOGGER.info("result : "+isNextPositionAllowed(mapTreasure.getWidth(), mapTreasure.getHeigth(), nextPosition));
         if (isNextPositionAllowed(mapTreasure.getWidth(), mapTreasure.getHeigth(), nextPosition)) {
             LOGGER.debug(mapTreasure.getMapItems().toString());
             MapItem mapItem = mapTreasure.getItemFromMap(nextPosition.getPositionX(), nextPosition.getPositionY());

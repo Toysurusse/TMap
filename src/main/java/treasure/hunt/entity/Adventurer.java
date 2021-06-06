@@ -1,6 +1,10 @@
 package treasure.hunt.entity;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import treasure.hunt.business.move.MoveAdventurer;
+import treasure.hunt.entity.eunmeration.Direction;
 import treasure.hunt.entity.eunmeration.Orientation;
 
 import java.util.ArrayList;
@@ -13,24 +17,74 @@ import java.util.List;
  */
 public class Adventurer extends MapItem{
 
-    private final String name;
-    private Orientation orientation;
-    private List<Orientation> moves;
+    private static final Logger LOGGER = LoggerFactory.getLogger(MoveAdventurer.class);
 
-    public Adventurer(String name, Position position, Orientation orientation, List<Orientation> moves) {
-        super(position);
-        this.name = name;
+    private int treasure;
+    private final String nameAdventurer;
+    private Orientation orientation;
+    private List<Direction> moves;
+
+    public Adventurer(String nameAdventurer, Position position, Orientation orientation, List<Direction> moves) {
+        super(position, " A ");
+        this.nameAdventurer = nameAdventurer;
         this.orientation = orientation;
         this.moves = moves;
+        this.treasure = 0;
     }
 
     @Override
     public String toString() {
         return "Adventurer{" +
-                "name='" + name + '\'' +
-                ", position=" + position +
+                "nameAdventurer='" + nameAdventurer + '\'' +
+                ", position=" + getPosition() +
                 ", orientation=" + orientation +
                 ", moves=" + moves +
+                ", treasure=" + treasure +
                 '}';
+    }
+
+    public String getNameAdventurer() {
+        return nameAdventurer;
+    }
+
+    public Orientation getOrientation() {
+        return orientation;
+    }
+
+    public void setOrientation(Orientation orientation) {
+        this.orientation = orientation;
+    }
+
+    public List<Direction> getMoves() {
+        return moves;
+    }
+
+    public void setMoves(List<Direction> moves) {
+        this.moves = moves;
+    }
+
+    public boolean isMoveLeft() {
+        return this.moves.size() > 0;
+    }
+
+    public void setNewPosition(Position position) {
+        deleteMove();
+        this.setPosition(position);
+    }
+
+    public void deleteMove() {
+        if(this.moves.size()>0)this.moves.remove(0);
+    }
+
+    public int getTreasure() {
+        return treasure;
+    }
+
+    public void setTreasure(int treasure) {
+        this.treasure = treasure;
+    }
+
+    public void addOneTreasure() {
+        this.treasure += treasure;
     }
 }

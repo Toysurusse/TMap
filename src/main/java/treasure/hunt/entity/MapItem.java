@@ -1,5 +1,12 @@
 package treasure.hunt.entity;
 
+/**
+ * Map item entity abstract entity to shared field between entities
+ *
+ * @author  LE BOITEUX Maximilien
+ * @version 1.0
+ * @since   2021-06-6
+ */
 public abstract class MapItem {
     protected Position position;
     protected String name;
@@ -17,6 +24,14 @@ public abstract class MapItem {
                 '}';
     }
 
+    /**
+     * format ot output string info
+     * @return file String format
+     */
+    public String fileFormatToString(){
+        return this.name + "- " + position.getPositionX() + " - "+position.getPositionY();
+    }
+
     public Position getPosition() {
         return position;
     }
@@ -29,7 +44,4 @@ public abstract class MapItem {
         return name;
     }
 
-    public String fileFormatToString(){
-        return this.name + "- " + position.getPositionX() + " - "+position.getPositionY();
-    }
 }

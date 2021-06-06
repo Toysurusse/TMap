@@ -16,6 +16,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
+
+/**
+ * This service allow you to read the input file
+ *
+ * @author  LE BOITEUX Maximilien
+ * @version 1.0
+ * @since   2021-06-6
+ */
 @Service
 public class FileReader {
 
@@ -30,6 +38,9 @@ public class FileReader {
     @Autowired
     ConfigurationMap configurationMap;
 
+    /**
+     * Read the file from input file, and create the mapTreasure in ConfigurationMap
+     */
     public void readFile() {
         try {
             File file = resourceFile.getFile();

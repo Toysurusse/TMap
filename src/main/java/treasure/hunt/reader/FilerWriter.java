@@ -15,6 +15,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
+
+/**
+ * Service to write result of the program in an external file
+ *
+ * @author  LE BOITEUX Maximilien
+ * @version 1.0
+ * @since   2021-06-6
+ */
 @Service
 public class FilerWriter {
 
@@ -23,6 +31,9 @@ public class FilerWriter {
     @Autowired
     ConfigurationMap configurationMap;
 
+    /**
+     * write the file in the output file after moving all adventurers
+     */
     public void writeFile(){
         LOGGER.info(configurationMap.getMapTreasure().toFileString().toString());
         try {

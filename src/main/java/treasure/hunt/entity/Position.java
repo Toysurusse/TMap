@@ -1,5 +1,13 @@
 package treasure.hunt.entity;
 
+
+/**
+ * Position entity : define the position of an entity in the mapTreasure
+ *
+ * @author  LE BOITEUX Maximilien
+ * @version 1.0
+ * @since   2021-06-6
+ */
 public class Position {
 
     private int positionX;
@@ -27,16 +35,8 @@ public class Position {
         return positionX;
     }
 
-    public void setPositionX(int positionX) {
-        this.positionX = positionX;
-    }
-
     public int getPositionY() {
         return positionY;
-    }
-
-    public void setPositionY(int positionY) {
-        this.positionY = positionY;
     }
 }
 

@@ -10,6 +10,14 @@ import treasure.hunt.entity.MapTreasure;
 
 import java.util.LinkedList;
 
+
+/**
+ * Move all adventurers from the map
+ *
+ * @author  LE BOITEUX Maximilien
+ * @version 1.0
+ * @since   2021-06-6
+ */
 @Service
 public class MoveOrchestor {
 
@@ -23,6 +31,9 @@ public class MoveOrchestor {
     @Autowired
     public ConfigurationMap configurationMap;
 
+    /**
+     * Service to move all adventurers while they have turn instruction
+     */
     public void moveAdneturers() {
         while (configurationMap.getMapTreasure().isAdventurersGetMoves()) {
             configurationMap.getMapTreasure().getAdventurers().forEach(adventurer->{

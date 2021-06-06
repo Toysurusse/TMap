@@ -14,6 +14,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+/**
+ * Initialize the map
+ *
+ * @author  LE BOITEUX Maximilien
+ * @version 1.0
+ * @since   2021-06-6
+ */
 @Service
 public class InitMap {
 
@@ -24,6 +32,12 @@ public class InitMap {
     private ArrayList<Treasure> treasures = new ArrayList<>();
     private LinkedList<Adventurer> adventurers = new LinkedList<>();
 
+    /**
+     * Initialize map from string input
+     *
+     * @param mapInput str from file input
+     * @return MapTreasure => map entity
+     */
     public MapTreasure getItemFromLines(String mapInput) {
         {
             String[] lines = mapInput.split("\n");
@@ -49,19 +63,36 @@ public class InitMap {
                         }
                     }
             );
-
             return new MapTreasure(position.getPositionX(), position.getPositionY(), adventurers, mountains, treasures);
         }
     }
 
+    /**
+     * create mountain from string map position
+     *
+     * @param positions string map position
+     * @return Mountain : entity wich représent a mountain
+     */
     private Mountain createMountain(String[] positions) {
         return new Mountain(new Position(positions[1], positions[2]));
     }
 
+    /**
+     * create treasure from string map position and tresure info
+     *
+     * @param positionsAndNumberItem string map position
+     * @return Treasure : entity wich représent a mountain
+     */
     private Treasure createTreasure(String[] positionsAndNumberItem) {
         return new Treasure(new Position(positionsAndNumberItem[1], positionsAndNumberItem[2]), Integer.parseInt(positionsAndNumberItem[3]));
     }
 
+    /**
+     * create treasure from string map adventurer (str : {'name', 'positionX', 'positionY', 'orientation', 'directions'})
+     *
+     * @param infoList string map position
+     * @return Adventurer : entity wich représent a mountain
+     */
     private Adventurer createAdventurer(String[] infoList) {
         String[] dirList = infoList[5].split("");
         List<Direction> directions = Arrays.asList(dirList)
@@ -69,6 +100,6 @@ public class InitMap {
                 .map(Direction::valueOfLabel)
                 .collect(Collectors.toList());
         LOGGER.info(directions.toString());
-        return new Adventurer(infoList[1], new Position(infoList[2], infoList[3]), Orientation.valueOf(infoList[4]), directions);
+        return new Adventurer(infoList[1], new Position(infoList[2], infoList[3]), Orientation.valueOfLabel(infoList[4]), directions);
     }
 }

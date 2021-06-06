@@ -13,11 +13,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
+/**
+ * Spring Boot main file
+ *
+ * @author  LE BOITEUX Maximilien
+ * @version 1.0
+ * @since   2021-06-6
+ */
 @SpringBootApplication
 public class HuntApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HuntApplication.class, args);
 	}
-
-
 }

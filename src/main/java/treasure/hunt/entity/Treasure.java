@@ -2,6 +2,14 @@ package treasure.hunt.entity;
 
 import treasure.hunt.Exception.BusinessException;
 
+
+/**
+ * Treasure entity
+ *
+ * @author  LE BOITEUX Maximilien
+ * @version 1.0
+ * @since   2021-06-6
+ */
 public class Treasure extends MapItem{
 
     private int number;
@@ -31,10 +39,6 @@ public class Treasure extends MapItem{
 
     public int getNumber() {
         return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
     }
 
     public void removeOneTresure() {

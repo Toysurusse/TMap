@@ -11,9 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Entity class to set Adventurer properties.
+ * Adventurer entity
  *
- * @author Max LB (@Toysurusse)
+ * @author  LE BOITEUX Maximilien
+ * @version 1.0
+ * @since   2021-06-6
  */
 public class Adventurer extends MapItem{
 
@@ -53,6 +55,36 @@ public class Adventurer extends MapItem{
         return this.name + "- " + this.nameAdventurer + "- " + position.getPositionX() + " - "+position.getPositionY() + " - " + this.orientation + " - " + this.treasure;
     }
 
+
+    /**
+     * chack if adventurer have anyMore move left
+     * @return <i>true</i> if adventurer have any move, otherwise <i>false</i>
+     */
+    public boolean isMoveLeft() {
+        return this.moves.size() > 0;
+    }
+    /**
+     * add one tresure to adventurer
+     */
+    public void addOneTreasure() {
+        this.treasure++;
+    }
+
+    /**
+     * @return the length of the name of the adventurer
+     */
+    public int namelength() {
+        return nameAdventurer.length()+4;
+    }
+
+    /**
+     * Set the new position of the adventurer
+     */
+    public void setNewPosition(Position position) {
+        deleteMove();
+        this.setPosition(position);
+    }
+
     public String getNameAdventurer() {
         return nameAdventurer;
     }
@@ -69,19 +101,6 @@ public class Adventurer extends MapItem{
         return moves;
     }
 
-    public void setMoves(List<Direction> moves) {
-        this.moves = moves;
-    }
-
-    public boolean isMoveLeft() {
-        return this.moves.size() > 0;
-    }
-
-    public void setNewPosition(Position position) {
-        deleteMove();
-        this.setPosition(position);
-    }
-
     public void deleteMove() {
         if(this.moves.size()>0)this.moves.remove(0);
     }
@@ -94,11 +113,4 @@ public class Adventurer extends MapItem{
         this.treasure = treasure;
     }
 
-    public void addOneTreasure() {
-        this.treasure++;
-    }
-
-    public int namelength() {
-        return nameAdventurer.length()+4;
-    }
 }

@@ -1,5 +1,13 @@
 package treasure.hunt.entity.eunmeration;
 
+
+/**
+ * Enum of moveResult
+ *
+ * @author  LE BOITEUX Maximilien
+ * @version 1.0
+ * @since   2021-06-6
+ */
 public enum MoveResult {
 
     NA(Orientation.N, Direction.A, -1, 0, Orientation.N),
@@ -36,6 +44,13 @@ public enum MoveResult {
         this.orientationResult = orientationResult;
     }
 
+    /**
+     * function to get enum from orientation and direction. This enum define the result of the orientation and the direction instructions
+     *
+     * @param orientation orientation of adventurer
+     * @param direction direction of values
+     * @return Direction default is a plain
+     */
     public static MoveResult valueOfLabel(Orientation orientation, Direction direction) {
         for (MoveResult e : values()) {
             if (e.orientation == orientation && e.direction == direction) {

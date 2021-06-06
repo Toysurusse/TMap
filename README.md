@@ -23,7 +23,7 @@ A - Lara - 0 - 3 - S - 3
 ## Environnement de développement
 
 L'application java est packagée par le fichier pom.xml. Vous pouvez installer le programme grâce à maven ou dans votre IDE
-*   `mvn clean install` : Génération du war
+*   `mvn clean install`
 
 
 ## Contributeurs

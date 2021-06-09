@@ -30,7 +30,7 @@ L'application java est packagée par le fichier pom.xml. Vous pouvez installer l
  
 Maximilien LeBoiteux alias ToySuRusse : https://github.com/Toysurusse
  
-Ce projet est libre de droit et disponible gratuitement : https://github.com/Toysurusse/Project-6/
+Ce projet est libre de droit et disponible gratuitement : https://github.com/Toysurusse/Tmap/
  
 ## License
  
